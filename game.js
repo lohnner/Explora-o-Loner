@@ -11,6 +11,10 @@ const JOBS = [
   { id:'sucata',   name:'Triagem de Sucata',        icon:'♻️', desc:'Separar o lixo do que ainda tem valor.',   min:40,  pay:17 },
   { id:'inspec',   name:'Inspeção de Contêineres',  icon:'📋', desc:'Conferir lacres e manifestos de carga.',   min:75,  pay:33 },
   { id:'doca',     name:'Assistente de Doca',       icon:'🛬', desc:'Guiar naves na atracação.',                min:50,  pay:22 },
+  { id:'mensagem', name:'Mensageiro da Estação',    icon:'📨', desc:'Entregar recados entre os anéis da estação.', min:20, pay:9 },
+  { id:'hidro',    name:'Jardineiro de Hidroponia', icon:'🌱', desc:'Cuidar das plantações do anel agrícola.',  min:55,  pay:24 },
+  { id:'reator',   name:'Auxiliar de Reator',       icon:'☢️', desc:'Monitorar os níveis do núcleo. Sem tocar em nada.', min:90, pay:41 },
+  { id:'arquivo',  name:'Arquivista de Registros',  icon:'🗄️', desc:'Organizar manifestos antigos no arquivo central.', min:35, pay:15 },
 ];
 
 const MISSIONS = [
@@ -24,6 +28,13 @@ const MISSIONS = [
   { id:'corp',     name:'Contrato Corporativo',    icon:'🏢', desc:'Transporte discreto. Não faça perguntas.',      min:120, pay:290, tier:3, lvl:16, faction:'corp',        loc:{ name:'Estação Helios',    icon:'🏢', x:58, y:80 } },
   { id:'nebulosa', name:'Expedição à Nebulosa',    icon:'🔮', desc:'Coletar dados dentro da nebulosa Carmim.',      min:180, pay:410, tier:3, lvl:18, faction:'sindicato',   loc:{ name:'Nebulosa Carmim',   icon:'🔮', x:88, y:80 } },
   { id:'mapear',   name:'Mapeamento de Setor',     icon:'❓', desc:'Cartografar uma região inexplorada.',           min:240, pay:540, tier:3, lvl:20, faction:'sindicato',   loc:{ name:'Zona Inexplorada',  icon:'❓', x:10, y:84 } },
+  { id:'satelite', name:'Reparo de Satélite',      icon:'📡', desc:'Trocar as placas queimadas de um satélite de comunicação.', min:55, pay:48, tier:1, lvl:5, faction:'corp', loc:{ name:'Satélite Kilo', icon:'📡', x:52, y:12 } },
+  { id:'contrab',  name:'Rastrear Contrabando',    icon:'🕶️', desc:'Seguir uma carga suspeita sem ser visto.',      min:110, pay:160, tier:2, lvl:12, faction:'sindicato',   loc:{ name:'Rota Sombria',      icon:'🕶️', x:8,  y:45 } },
+  { id:'lab',      name:'Suprimentos ao Laboratório', icon:'🧪', desc:'Levar amostras congeladas ao laboratório orbital.', min:130, pay:185, tier:2, lvl:13, faction:'corp', loc:{ name:'Lab Órbita Alta',  icon:'🧪', x:92, y:58 } },
+  { id:'colonia',  name:'Abastecer a Colônia',     icon:'🏜️', desc:'A colônia Nova Duna depende dessa entrega.',    min:200, pay:460, tier:3, lvl:22, faction:'mineradores', loc:{ name:'Nova Duna',         icon:'🏜️', x:24, y:88 } },
+  { id:'anomalia', name:'Sondar a Anomalia',       icon:'🌌', desc:'Algo distorce o espaço perto da estação. Chegue perto. Não muito.', min:300, pay:700, tier:3, lvl:25, faction:'sindicato', loc:{ name:'Anomalia Delta', icon:'🌌', x:30, y:40 } },
+  { id:'titan',    name:'Comboio Titã',            icon:'🚛', desc:'Liderar o maior comboio de carga do semestre.', min:240, pay:950, tier:4, lvl:26, faction:'corp',        loc:{ name:'Estaleiro Titã',    icon:'🚛', x:70, y:90 } },
+  { id:'vazio',    name:'Expedição ao Vazio',      icon:'🕳️', desc:'Além da última estrela do setor não há mapas. Só rumores.', min:360, pay:1200, tier:4, lvl:28, faction:'sindicato', loc:{ name:'O Vazio', icon:'🕳️', x:90, y:12 } },
 ];
 
 const SHIPS = [
@@ -31,6 +42,7 @@ const SHIPS = [
   { tier:1, name:'Vaga-Lume',       icon:'🛸', desc:'Um cargueiro usado, cheio de remendos, mas voa. Libera missões básicas.',       price:350,  lvl:1,  tank:40,  slots:2 },
   { tier:2, name:'Falcão de Ferro', icon:'🚀', desc:'Casco reforçado e motores decentes. Libera missões de médio alcance.',          price:1500, lvl:8,  tank:70,  slots:3 },
   { tier:3, name:'Aurora Estelar',  icon:'🛰️', desc:'Uma beleza de nave. Alcança os cantos mais fundos do setor. Missões de elite.', price:6000, lvl:16, tank:120, slots:5 },
+  { tier:4, name:'Espectro do Vazio', icon:'🌠', desc:'Tecnologia experimental recuperada da Anomalia. Vai onde nenhuma nave voltou.', price:20000, lvl:25, tank:200, slots:7 },
 ];
 
 const RANKS = [
@@ -41,6 +53,8 @@ const RANKS = [
   { at:3500,  name:'Capitão' },
   { at:8000,  name:'Comandante' },
   { at:20000, name:'Lenda do Setor' },
+  { at:50000, name:'Barão Estelar' },
+  { at:150000, name:'Mito do Vazio' },
 ];
 
 const ITEMS = {
@@ -56,17 +70,23 @@ const ITEMS = {
   nucleo:      { name:'Núcleo de Sonda',        icon:'🔋', value:42,  rarity:'raro' },
   minerioRaro: { name:'Minério Raro',           icon:'💎', value:35,  rarity:'raro' },
   componente:  { name:'Componente Eletrônico',  icon:'⚡', value:32,  rarity:'raro' },
+  kit:         { name:'Kit de Reparos',         icon:'🧰', value:45,  rarity:'raro' },
   cristal:     { name:'Cristal da Nebulosa',    icon:'🔮', value:95,  rarity:'épico' },
   dados:       { name:'Dados de Setor',         icon:'🗺️', value:120, rarity:'épico' },
   ligaTemp:    { name:'Liga Temperada',         icon:'🔗', value:110, rarity:'épico' },
   baliza:      { name:'Baliza Estelar',         icon:'📡', value:160, rarity:'épico' },
+  cristalLap:  { name:'Cristal Lapidado',       icon:'✨', value:190, rarity:'épico' },
+  prisma:      { name:'Prisma Estelar',         icon:'🌈', value:300, rarity:'épico' },
+  singular:    { name:'Núcleo Singular',        icon:'🧿', value:380, rarity:'épico' },
   artefato:    { name:'Artefato Antigo',        icon:'🏺', value:220, rarity:'lendário' },
+  reliquia:    { name:'Relíquia do Vazio',      icon:'🗿', value:480, rarity:'lendário' },
 };
 
 const LOOT_JOB = ['sucata', 'cabo', 'racao', 'ferramenta'];
 const LOOT_T1  = ['minerio', 'gelo', 'circuito'];
 const LOOT_T2  = ['liga', 'nucleo', 'minerioRaro'];
 const LOOT_T3  = ['cristal', 'dados', 'artefato'];
+const LOOT_T4  = ['prisma', 'singular', 'reliquia'];
 
 const RECIPES = [
   { id:'chapa',      name:'Chapa de Casco',         icon:'🛡️', out:{ item:'chapa' },      needs:{ sucata:4, ferramenta:1 },  outDesc:'1× Chapa de Casco' },
@@ -74,6 +94,8 @@ const RECIPES = [
   { id:'celula',     name:'Célula de Combustível',  icon:'⛽', out:{ fuel:15 },           needs:{ gelo:2, sucata:1 },        outDesc:'+15 de combustível' },
   { id:'ligaTemp',   name:'Liga Temperada',         icon:'🔗', out:{ item:'ligaTemp' },   needs:{ liga:2, minerioRaro:1 },   outDesc:'1× Liga Temperada' },
   { id:'baliza',     name:'Baliza Estelar',         icon:'📡', out:{ item:'baliza' },     needs:{ nucleo:1, componente:2 },  outDesc:'1× Baliza Estelar' },
+  { id:'kit',        name:'Kit de Reparos',         icon:'🧰', out:{ item:'kit' },        needs:{ sucata:3, ferramenta:2, circuito:1 }, outDesc:'1× Kit de Reparos' },
+  { id:'cristalLap', name:'Cristal Lapidado',       icon:'✨', out:{ item:'cristalLap' }, needs:{ cristal:1, ligaTemp:1 },   outDesc:'1× Cristal Lapidado' },
 ];
 
 const MODULES = [
@@ -82,6 +104,8 @@ const MODULES = [
   { id:'tanque',    name:'Tanque Auxiliar',    icon:'⛽', effect:'+25 de combustível máximo',       price:300, needs:{ componente:2 } },
   { id:'antena',    name:'Antena Quântica',    icon:'📡', effect:'+15% XP ganho',                   price:600, needs:{ baliza:1 } },
   { id:'refinaria', name:'Refinaria Compacta', icon:'⚗️', effect:'+20% no valor de venda de itens', price:800, needs:{ ligaTemp:2 } },
+  { id:'scanner',   name:'Scanner Profundo',   icon:'🔍', effect:'+10% pagamento de missões',       price:700, needs:{ nucleo:1, componente:2 } },
+  { id:'autopiloto',name:'Piloto Automático',  icon:'🤖', effect:'−15% consumo de combustível',     price:550, needs:{ kit:1, componente:1 } },
 ];
 
 const FACTIONS = {
@@ -105,6 +129,8 @@ const DAILY_POOL = [
   { id:'geleira',  name:'Colheita da Geleira',      icon:'🧊', desc:'Janela curta para extrair gelo puro de um cometa em rota de saída.',     faction:'mineradores' },
   { id:'semnome',  name:'Encomenda Sem Rótulo',     icon:'📦', desc:'O Sindicato paga bem para quem não abre a caixa.',                       faction:'sindicato' },
   { id:'fantasma', name:'Sinal Fantasma',           icon:'👻', desc:'Um sinal estranho no limite do setor. O Sindicato quer saber o que é.',  faction:'sindicato' },
+  { id:'expresso', name:'Expresso Interestelar',    icon:'⚡', desc:'Entrega corporativa com prazo impossível. Por isso paga o dobro.',       faction:'corp' },
+  { id:'derrelito',name:'Nave à Deriva',            icon:'🛳️', desc:'Um cargueiro abandonado apareceu no radar. Os Mineradores querem o casco.', faction:'mineradores' },
 ];
 
 const ACHIEVEMENTS = [
@@ -123,6 +149,12 @@ const ACHIEVEMENTS = [
   { id:'craft10', name:'Artesão Espacial',     desc:'Fabrique 10 itens',                    reward:120,  cond: lv => S.crafts >= 10 },
   { id:'aliado',  name:'Diplomata',            desc:'Torne-se Aliado de alguma facção',     reward:200,  cond: lv => Object.values(S.rep).some(r => r >= 60) },
   { id:'daily5',  name:'Cliente Fiel',         desc:'Complete 5 contratos diários',         reward:250,  cond: lv => S.dailiesDone >= 5 },
+  { id:'mis200',  name:'Lenda do Vácuo',       desc:'Complete 200 missões',                 reward:1500, cond: lv => S.missionsDone >= 200 },
+  { id:'lvl75',   name:'Três Quartos',         desc:'Alcance o nível 75',                   reward:5000, cond: lv => lv >= 75 },
+  { id:'lvl100',  name:'Centenário',           desc:'Alcance o nível 100',                  reward:10000, cond: lv => lv >= 100 },
+  { id:'espectro',name:'Além do Mapa',         desc:'Compre a Espectro do Vazio',           reward:1000, cond: lv => S.ship >= 4 },
+  { id:'mod5',    name:'Engenheiro de Bordo',  desc:'Instale 5 módulos na nave',            reward:400,  cond: lv => S.modules.length >= 5 },
+  { id:'replend', name:'Ídolo do Setor',       desc:'Reputação Lendário com alguma facção', reward:600,  cond: lv => Object.values(S.rep).some(r => r >= 100) },
 ];
 
 const HOUR = 3600000;
@@ -252,7 +284,11 @@ function sellPrice(itemId) {
   return Math.max(1, Math.round(ITEMS[itemId].value * marketMult(itemId) * sellMult()));
 }
 
-function missionFuelCost(min, tier) { return Math.round(min / 6 + tier * 4); }
+function missionFuelCost(min, tier) {
+  let cost = Math.round(min / 6 + tier * 4);
+  if (moduleOwned('autopiloto')) cost = Math.max(1, Math.round(cost * 0.85));
+  return cost;
+}
 
 function decorateOffer(item, min, pay, kind) {
   let xp;
@@ -262,7 +298,7 @@ function decorateOffer(item, min, pay, kind) {
   }
   // missões: módulos e reputação
   if (moduleOwned('motor')) min = Math.max(10, Math.round(min * 0.9));
-  pay = Math.round(pay * (1 + repLevel(item.faction) * 0.05));
+  pay = Math.round(pay * (1 + repLevel(item.faction) * 0.05) * (moduleOwned('scanner') ? 1.1 : 1));
   xp = Math.round((min * 1.8 + pay) * (1 + 0.25 * ((item.tier || 1) - 1)) * xpMult());
   const fuel = missionFuelCost(min, item.tier || 1);
   const { loc, ...rest } = item; // loc não precisa ir no botão
@@ -281,11 +317,12 @@ function currentOffers(pool, seedSalt, count, kind) {
   });
 }
 
-function jobOffers() { return currentOffers(JOBS, 17, 3, 'job'); }
+function jobOffers() { return currentOffers(JOBS, 17, 4, 'job'); }
 function missionOffers() {
   const available = MISSIONS.filter(m => m.tier <= S.ship);
   if (!available.length) return [];
-  return currentOffers(available, 91, Math.min(3, available.length), 'mission');
+  // naves melhores recebem mais ofertas por rotação (3 a 6)
+  return currentOffers(available, 91, Math.min(2 + S.ship, available.length), 'mission');
 }
 
 // contrato diário: um por dia, escala com o nível do jogador
@@ -296,8 +333,9 @@ function dailyContract() {
   const base = DAILY_POOL[Math.floor(rng() * DAILY_POOL.length)];
   const lv = levelFromXp(S.xp);
   const min = Math.round(90 + rng() * 150);
-  const pay = Math.round((90 + lv * 14) * (0.9 + rng() * 0.3) * (1 + repLevel(base.faction) * 0.05));
-  const tier = lv >= 16 ? 3 : lv >= 8 ? 2 : 1;
+  const pay = Math.round((90 + lv * 14) * (0.9 + rng() * 0.3) * (1 + repLevel(base.faction) * 0.05) * (moduleOwned('scanner') ? 1.1 : 1));
+  const lvTier = lv >= 25 ? 4 : lv >= 16 ? 3 : lv >= 8 ? 2 : 1;
+  const tier = Math.max(1, Math.min(S.ship, lvTier));
   const adjMin = moduleOwned('motor') ? Math.max(10, Math.round(min * 0.9)) : min;
   const xp = Math.round((adjMin * 1.8 + pay) * 1.4 * xpMult());
   return {
@@ -328,13 +366,16 @@ function rollLoot(kind, tier) {
     drops.push(pick(rng, LOOT_T2));
     if (rng() < 0.4) drops.push(pick(rng, LOOT_T1));
     if (rng() < 0.06) drops.push(pick(rng, LOOT_T3));
-  } else {
+  } else if (tier === 3) {
     drops.push(pick(rng, LOOT_T3));
     if (rng() < 0.5) drops.push(pick(rng, LOOT_T2));
+  } else {
+    drops.push(pick(rng, LOOT_T4));
+    if (rng() < 0.5) drops.push(pick(rng, LOOT_T3));
   }
   // Porão Expandido: +1 item garantido em missões
   if (moduleOwned('porao')) {
-    const pools = { 1: LOOT_T1, 2: LOOT_T2, 3: LOOT_T3 };
+    const pools = { 1: LOOT_T1, 2: LOOT_T2, 3: LOOT_T3, 4: LOOT_T4 };
     drops.push(pick(rng, pools[tier] || LOOT_T1));
   }
   return drops;
@@ -674,7 +715,7 @@ function render() {
 function renderActive() {
   const panel = document.getElementById('activePanel');
   const a = S.activity;
-  if (!a) { panel.style.display = 'none'; return; }
+  if (!a) { panel.style.display = 'none'; activityWasFinished = false; return; }
   panel.style.display = 'block';
 
   const now = Date.now();
@@ -682,6 +723,7 @@ function renderActive() {
   const done = Math.min(1, (now - a.startTs) / total);
   const remaining = a.endTs - now;
   const finished = remaining <= 0;
+  activityWasFinished = finished;
   const label = a.kind === 'job' ? '🔧 Serviço em andamento'
     : a.kind === 'daily' ? '⭐ Contrato diário em andamento'
     : '🚀 Missão em andamento';
@@ -695,7 +737,7 @@ function renderActive() {
         <h3>${a.name}</h3>
       </div>
     </div>
-    <div class="progress-outer"><div class="progress-inner" style="width:${(done * 100).toFixed(1)}%"></div></div>
+    <div class="progress-outer"><div class="progress-inner" id="activeProgress" style="width:${(done * 100).toFixed(1)}%"></div></div>
     <div class="active-row">
       <div class="active-rewards">
         <span class="chip chip-pay">+${a.reward} ₵</span>
@@ -704,7 +746,7 @@ function renderActive() {
       </div>
       ${finished
         ? `<button class="collect" onclick="collectActivity()">✔ Concluir e receber</button>`
-        : `<span class="countdown">⏱ ${fmtCountdown(remaining)}</span>`}
+        : `<span class="countdown" id="activeCountdown">⏱ ${fmtCountdown(remaining)}</span>`}
     </div>
     ${finished ? '' : `<div style="text-align:right;margin-top:10px"><button class="danger" onclick="abandonActivity()">Abandonar</button></div>`}
   `;
@@ -759,7 +801,7 @@ function renderMissions(c, busy, lv) {
   if (daily) {
     if (S.dailyDone === daily.day) {
       const msLeft = (daily.day + 1) * DAY - Date.now();
-      html += `<div class="daily-done">⭐ <b>Contrato diário concluído.</b> Um novo aparece em ${fmtCountdown(msLeft)}.</div>`;
+      html += `<div class="daily-done">⭐ <b>Contrato diário concluído.</b> Um novo aparece em <b class="live-day">${fmtCountdown(msLeft)}</b>.</div>`;
     } else {
       html += offerCard(daily, 'daily', busy, lv, true);
     }
@@ -818,7 +860,7 @@ function renderMap(c, busy, lv) {
       detail = `<div class="map-detail"><div class="daily-done">🔒 <b>${m.loc.name}</b> — ${m.name} requer <b>nível ${m.lvl}</b>.</div></div>`;
     } else {
       const msLeft = (hourIndex() + 1) * HOUR - Date.now();
-      detail = `<div class="map-detail"><div class="daily-done">📭 <b>${m.loc.name}</b> — sem contratos nesta rotação. Novas ofertas em <b>${fmtCountdown(msLeft)}</b>.</div></div>`;
+      detail = `<div class="map-detail"><div class="daily-done">📭 <b>${m.loc.name}</b> — sem contratos nesta rotação. Novas ofertas em <b class="live-rot">${fmtCountdown(msLeft)}</b>.</div></div>`;
     }
   }
 
@@ -1090,15 +1132,48 @@ checkAchievements();
 save();
 
 let lastHour = hourIndex();
+let activityWasFinished = false;
 render();
 
-setInterval(() => {
+// tick de 1s: atualiza SÓ contadores e barras, sem reconstruir o HTML
+// (reconstruir tudo a cada segundo reiniciava as animações e fazia a tela piscar)
+function tick() {
+  const now = Date.now();
+
+  // virada de hora → ofertas e preços novos → render completo
   const h = hourIndex();
   if (h !== lastHour) {
     lastHour = h;
-    if (!S.activity) toast('↻ Novas ofertas e preços de mercado!');
+    toast('↻ Novas ofertas e preços de mercado!');
+    render();
+    return;
   }
-  render();
-}, 1000);
+
+  // countdown de rotação (texto simples, sem rebuild)
+  renderRotation();
+  const msRot = (hourIndex() + 1) * HOUR - now;
+  document.querySelectorAll('.live-rot').forEach(el => { el.textContent = fmtCountdown(msRot); });
+  const msDay = (dayIndex() + 1) * DAY - now;
+  document.querySelectorAll('.live-day').forEach(el => { el.textContent = fmtCountdown(msDay); });
+
+  // atividade em andamento
+  const a = S.activity;
+  if (a) {
+    const finished = now >= a.endTs;
+    if (finished && !activityWasFinished) {
+      // acabou de terminar → render completo para mostrar o botão de coletar
+      render();
+      return;
+    }
+    if (!finished) {
+      const bar = document.getElementById('activeProgress');
+      const cd = document.getElementById('activeCountdown');
+      if (bar) bar.style.width = (Math.min(1, (now - a.startTs) / (a.endTs - a.startTs)) * 100).toFixed(1) + '%';
+      if (cd) cd.textContent = `⏱ ${fmtCountdown(a.endTs - now)}`;
+    }
+  }
+}
+
+setInterval(tick, 1000);
 
 window.addEventListener('beforeunload', save);

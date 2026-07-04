@@ -76,7 +76,7 @@ body {
     radial-gradient(1px 1px at 5% 60%, #c0a8ff33, transparent);
   animation-delay: 3.5s;
 }
-@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+@keyframes twinkle { 0%, 100% { opacity: 1; } 50% { opacity: .75; } }
 
 .wrap { position: relative; z-index: 1; max-width: 880px; margin: 0 auto; padding: 14px 16px 48px; }
 
