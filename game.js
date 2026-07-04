@@ -3,27 +3,27 @@
 /* ================= DADOS ================= */
 
 const JOBS = [
-  { id:'carga',    name:'Carregador de Cargas',     desc:'Mover contêineres na doca 7.',             min:25,  pay:11 },
-  { id:'dutos',    name:'Limpeza de Dutos',         desc:'Ninguém gosta, mas alguém tem que fazer.', min:33,  pay:14 },
-  { id:'manut',    name:'Técnico de Manutenção',    desc:'Apertar parafusos no anel externo.',       min:60,  pay:26 },
-  { id:'cantina',  name:'Turno na Cantina',         desc:'Servir sopa de proteína aos mineradores.', min:45,  pay:19 },
-  { id:'vigia',    name:'Vigia Noturno',            desc:'Ficar de olho no depósito B.',             min:120, pay:52 },
-  { id:'sucata',   name:'Triagem de Sucata',        desc:'Separar o lixo do que ainda tem valor.',   min:40,  pay:17 },
-  { id:'inspec',   name:'Inspeção de Contêineres',  desc:'Conferir lacres e manifestos de carga.',   min:75,  pay:33 },
-  { id:'doca',     name:'Assistente de Doca',       desc:'Guiar naves na atracação.',                min:50,  pay:22 },
+  { id:'carga',    name:'Carregador de Cargas',     icon:'📦', desc:'Mover contêineres na doca 7.',             min:25,  pay:11 },
+  { id:'dutos',    name:'Limpeza de Dutos',         icon:'🧹', desc:'Ninguém gosta, mas alguém tem que fazer.', min:33,  pay:14 },
+  { id:'manut',    name:'Técnico de Manutenção',    icon:'🔧', desc:'Apertar parafusos no anel externo.',       min:60,  pay:26 },
+  { id:'cantina',  name:'Turno na Cantina',         icon:'🍜', desc:'Servir sopa de proteína aos mineradores.', min:45,  pay:19 },
+  { id:'vigia',    name:'Vigia Noturno',            icon:'🌙', desc:'Ficar de olho no depósito B.',             min:120, pay:52 },
+  { id:'sucata',   name:'Triagem de Sucata',        icon:'♻️', desc:'Separar o lixo do que ainda tem valor.',   min:40,  pay:17 },
+  { id:'inspec',   name:'Inspeção de Contêineres',  icon:'📋', desc:'Conferir lacres e manifestos de carga.',   min:75,  pay:33 },
+  { id:'doca',     name:'Assistente de Doca',       icon:'🛬', desc:'Guiar naves na atracação.',                min:50,  pay:22 },
 ];
 
 const MISSIONS = [
-  { id:'taxi',     name:'Táxi Orbital',            desc:'Levar um passageiro até a plataforma vizinha.', min:33,  pay:30,  tier:1, lvl:1,  faction:'sindicato',   loc:{ name:'Plataforma Vex',    icon:'🛰️', x:36, y:28 } },
-  { id:'gelo',     name:'Coleta de Gelo',          desc:'Raspar gelo de um cometa próximo.',             min:45,  pay:40,  tier:1, lvl:2,  faction:'mineradores', loc:{ name:'Cometa Idris',      icon:'☄️', x:68, y:18 } },
-  { id:'entrega',  name:'Entrega ao Cinturão',     desc:'Suprimentos para os mineradores do cinturão.',  min:70,  pay:58,  tier:1, lvl:3,  faction:'mineradores', loc:{ name:'Cinturão de Ferro', icon:'🪨', x:20, y:52 } },
-  { id:'patrulha', name:'Patrulha de Rotina',      desc:'Uma volta completa pelo perímetro do setor.',   min:120, pay:105, tier:1, lvl:4,  faction:'corp',        loc:{ name:'Rota de Patrulha',  icon:'📍', x:72, y:62 } },
-  { id:'resgate',  name:'Resgate de Sonda',        desc:'Recuperar uma sonda perdida à deriva.',         min:60,  pay:88,  tier:2, lvl:8,  faction:'corp',        loc:{ name:'Campo de Destroços',icon:'🛠️', x:32, y:76 } },
-  { id:'escolta',  name:'Escolta de Comboio',      desc:'Proteger cargueiros até o portal de salto.',    min:90,  pay:135, tier:2, lvl:9,  faction:'corp',        loc:{ name:'Portal de Salto',   icon:'🌀', x:86, y:38 } },
-  { id:'minerar',  name:'Mineração em Asteroide',  desc:'Extrair minério raro num asteroide instável.',  min:150, pay:215, tier:2, lvl:11, faction:'mineradores', loc:{ name:'Asteroide X-77',    icon:'💎', x:14, y:22 } },
-  { id:'corp',     name:'Contrato Corporativo',    desc:'Transporte discreto. Não faça perguntas.',      min:120, pay:290, tier:3, lvl:16, faction:'corp',        loc:{ name:'Estação Helios',    icon:'🏢', x:58, y:80 } },
-  { id:'nebulosa', name:'Expedição à Nebulosa',    desc:'Coletar dados dentro da nebulosa Carmim.',      min:180, pay:410, tier:3, lvl:18, faction:'sindicato',   loc:{ name:'Nebulosa Carmim',   icon:'🔮', x:88, y:80 } },
-  { id:'mapear',   name:'Mapeamento de Setor',     desc:'Cartografar uma região inexplorada.',           min:240, pay:540, tier:3, lvl:20, faction:'sindicato',   loc:{ name:'Zona Inexplorada',  icon:'❓', x:10, y:84 } },
+  { id:'taxi',     name:'Táxi Orbital',            icon:'🛰️', desc:'Levar um passageiro até a plataforma vizinha.', min:33,  pay:30,  tier:1, lvl:1,  faction:'sindicato',   loc:{ name:'Plataforma Vex',    icon:'🛰️', x:36, y:28 } },
+  { id:'gelo',     name:'Coleta de Gelo',          icon:'☄️', desc:'Raspar gelo de um cometa próximo.',             min:45,  pay:40,  tier:1, lvl:2,  faction:'mineradores', loc:{ name:'Cometa Idris',      icon:'☄️', x:68, y:18 } },
+  { id:'entrega',  name:'Entrega ao Cinturão',     icon:'🪨', desc:'Suprimentos para os mineradores do cinturão.',  min:70,  pay:58,  tier:1, lvl:3,  faction:'mineradores', loc:{ name:'Cinturão de Ferro', icon:'🪨', x:20, y:52 } },
+  { id:'patrulha', name:'Patrulha de Rotina',      icon:'📍', desc:'Uma volta completa pelo perímetro do setor.',   min:120, pay:105, tier:1, lvl:4,  faction:'corp',        loc:{ name:'Rota de Patrulha',  icon:'📍', x:72, y:62 } },
+  { id:'resgate',  name:'Resgate de Sonda',        icon:'🛠️', desc:'Recuperar uma sonda perdida à deriva.',         min:60,  pay:88,  tier:2, lvl:8,  faction:'corp',        loc:{ name:'Campo de Destroços',icon:'🛠️', x:32, y:76 } },
+  { id:'escolta',  name:'Escolta de Comboio',      icon:'🌀', desc:'Proteger cargueiros até o portal de salto.',    min:90,  pay:135, tier:2, lvl:9,  faction:'corp',        loc:{ name:'Portal de Salto',   icon:'🌀', x:86, y:38 } },
+  { id:'minerar',  name:'Mineração em Asteroide',  icon:'💎', desc:'Extrair minério raro num asteroide instável.',  min:150, pay:215, tier:2, lvl:11, faction:'mineradores', loc:{ name:'Asteroide X-77',    icon:'💎', x:14, y:22 } },
+  { id:'corp',     name:'Contrato Corporativo',    icon:'🏢', desc:'Transporte discreto. Não faça perguntas.',      min:120, pay:290, tier:3, lvl:16, faction:'corp',        loc:{ name:'Estação Helios',    icon:'🏢', x:58, y:80 } },
+  { id:'nebulosa', name:'Expedição à Nebulosa',    icon:'🔮', desc:'Coletar dados dentro da nebulosa Carmim.',      min:180, pay:410, tier:3, lvl:18, faction:'sindicato',   loc:{ name:'Nebulosa Carmim',   icon:'🔮', x:88, y:80 } },
+  { id:'mapear',   name:'Mapeamento de Setor',     icon:'❓', desc:'Cartografar uma região inexplorada.',           min:240, pay:540, tier:3, lvl:20, faction:'sindicato',   loc:{ name:'Zona Inexplorada',  icon:'❓', x:10, y:84 } },
 ];
 
 const SHIPS = [
@@ -99,12 +99,12 @@ const REP_LEVELS = [
 ];
 
 const DAILY_POOL = [
-  { id:'helios',   name:'Carga Prioritária Helios', desc:'A Corporação precisa disto entregue ontem. Pagamento à altura.',        faction:'corp' },
-  { id:'vip',      name:'Resgate VIP',              desc:'Um executivo encalhado numa cápsula de fuga. Discrição total.',          faction:'corp' },
-  { id:'platina',  name:'Veio de Platina',          desc:'Os Mineradores acharam um veio raro e precisam de transporte urgente.',  faction:'mineradores' },
-  { id:'geleira',  name:'Colheita da Geleira',      desc:'Janela curta para extrair gelo puro de um cometa em rota de saída.',     faction:'mineradores' },
-  { id:'semnome',  name:'Encomenda Sem Rótulo',     desc:'O Sindicato paga bem para quem não abre a caixa.',                       faction:'sindicato' },
-  { id:'fantasma', name:'Sinal Fantasma',           desc:'Um sinal estranho no limite do setor. O Sindicato quer saber o que é.',  faction:'sindicato' },
+  { id:'helios',   name:'Carga Prioritária Helios', icon:'🏢', desc:'A Corporação precisa disto entregue ontem. Pagamento à altura.',        faction:'corp' },
+  { id:'vip',      name:'Resgate VIP',              icon:'🧑‍💼', desc:'Um executivo encalhado numa cápsula de fuga. Discrição total.',          faction:'corp' },
+  { id:'platina',  name:'Veio de Platina',          icon:'💠', desc:'Os Mineradores acharam um veio raro e precisam de transporte urgente.',  faction:'mineradores' },
+  { id:'geleira',  name:'Colheita da Geleira',      icon:'🧊', desc:'Janela curta para extrair gelo puro de um cometa em rota de saída.',     faction:'mineradores' },
+  { id:'semnome',  name:'Encomenda Sem Rótulo',     icon:'📦', desc:'O Sindicato paga bem para quem não abre a caixa.',                       faction:'sindicato' },
+  { id:'fantasma', name:'Sinal Fantasma',           icon:'👻', desc:'Um sinal estranho no limite do setor. O Sindicato quer saber o que é.',  faction:'sindicato' },
 ];
 
 const ACHIEVEMENTS = [
@@ -385,6 +385,7 @@ function startActivity(kind, offer) {
   S.activity = {
     kind,
     name: offer.name,
+    icon: offer.icon || null,
     tier: offer.tier || 0,
     faction: offer.faction || null,
     day: offer.day,
@@ -687,14 +688,19 @@ function renderActive() {
 
   panel.className = 'active-panel';
   panel.innerHTML = `
-    <div class="type-tag">${label}</div>
-    <h3>${a.name}</h3>
+    <div class="active-head">
+      <span class="active-emoji">${a.icon || (a.kind === 'job' ? '🔧' : '🚀')}</span>
+      <div>
+        <div class="type-tag">${label}</div>
+        <h3>${a.name}</h3>
+      </div>
+    </div>
     <div class="progress-outer"><div class="progress-inner" style="width:${(done * 100).toFixed(1)}%"></div></div>
     <div class="active-row">
       <div class="active-rewards">
-        <span class="rw-pay">+${a.reward} ₵</span>
-        <span class="rw-xp">+${a.xp} XP</span>
-        ${a.faction ? factionChip(a.faction) : ''}
+        <span class="chip chip-pay">+${a.reward} ₵</span>
+        <span class="chip chip-xp">+${a.xp} XP</span>
+        ${a.faction ? `<span class="chip">${factionChip(a.faction)}</span>` : ''}
       </div>
       ${finished
         ? `<button class="collect" onclick="collectActivity()">✔ Concluir e receber</button>`
@@ -704,11 +710,21 @@ function renderActive() {
   `;
 }
 
+const TAB_DESCS = {
+  jobs: 'Trabalhos na estação — não exigem nave. Pagam pouco, mas sempre tem algo.',
+  missions: 'Contratos espaciais — exigem nave e combustível. Pagam mais e dão reputação.',
+  map: 'Visão do setor — locais com anel verde têm contratos disponíveis agora.',
+  hangar: 'Compre naves, abasteça o tanque e instale módulos de melhoria.',
+  inventory: 'Venda seu loot (preços mudam a cada hora) e fabrique peças.',
+  profile: 'Sua reputação com as facções do setor e suas conquistas.',
+};
+
 function renderRotation() {
+  document.getElementById('tabDesc').textContent = TAB_DESCS[tab] || '';
   const el = document.getElementById('rotationNote');
   if (!['jobs', 'missions', 'map', 'inventory'].includes(tab)) { el.textContent = ''; return; }
   const msLeft = (hourIndex() + 1) * HOUR - Date.now();
-  const what = tab === 'inventory' ? 'Preços de mercado mudam' : 'Novas ofertas';
+  const what = tab === 'inventory' ? 'preços mudam' : 'novas ofertas';
   el.textContent = `↻ ${what} em ${fmtCountdown(msLeft)}`;
 }
 
@@ -887,24 +903,27 @@ function offerCard(o, kind, busy, lv, isDaily) {
   const isFlight = kind !== 'job';
   const noFuel = isFlight && S.fuel < o.fuel;
   const disabled = busy || lvLocked || noFuel;
-  const btnLabel = lvLocked ? `Nível ${o.lvl}` : noFuel ? 'Sem ⛽' : 'Aceitar';
+  const btnLabel = busy ? 'Ocupado' : lvLocked ? `Requer nível ${o.lvl}` : noFuel ? 'Sem combustível ⛽' : 'Aceitar';
   return `
     <div class="card ${isDaily ? 'daily-card' : ''}">
-      <div class="info">
-        ${isDaily ? '<div class="daily-tag">⭐ Contrato diário — recompensa especial</div>' : ''}
-        <h4>${o.name}</h4>
-        <p>${o.desc}</p>
+      ${isDaily ? '<div class="daily-tag">⭐ Contrato diário — recompensa especial</div>' : ''}
+      <div class="offer-head">
+        <span class="offer-icon">${o.icon || (isFlight ? '🚀' : '🔧')}</span>
+        <div>
+          <h4>${o.name}</h4>
+          <p>${o.desc}</p>
+        </div>
       </div>
-      <div class="meta">
-        <span class="dur">⏱ ${fmtDur(o.min)}</span>
-        <span class="pay">+${fmtCredits(o.pay)} ₵</span>
-        <span class="xp">+${fmtCredits(o.xp)} XP</span>
-        ${isFlight ? `<span class="fuel-cost">⛽ ${o.fuel}</span>` : ''}
-        ${o.lvl && o.lvl > 1 ? `<span class="${lvLocked ? 'req' : ''}">Nv. ${o.lvl}+</span>` : ''}
+      <div class="chips">
+        <span class="chip chip-time">⏱ ${fmtDur(o.min)}</span>
+        <span class="chip chip-pay">+${fmtCredits(o.pay)} ₵</span>
+        <span class="chip chip-xp">+${fmtCredits(o.xp)} XP</span>
+        ${isFlight ? `<span class="chip chip-fuel">⛽ ${o.fuel}</span>` : ''}
+        ${o.lvl && o.lvl > 1 ? `<span class="chip chip-lvl ${lvLocked ? 'req' : ''}">Nv. ${o.lvl}+</span>` : ''}
       </div>
-      ${o.faction ? `<div class="meta">${factionChip(o.faction)}</div>` : ''}
-      <div class="actions">
-        <button ${disabled ? 'disabled' : ''} onclick='startActivity("${kind}", ${JSON.stringify(o).replace(/'/g, "&#39;")})'>${btnLabel}</button>
+      <div class="offer-foot">
+        ${o.faction ? factionChip(o.faction) : '<span></span>'}
+        <button class="accept" ${disabled ? 'disabled' : ''} onclick='startActivity("${kind}", ${JSON.stringify(o).replace(/'/g, "&#39;")})'>${btnLabel}</button>
       </div>
     </div>`;
 }
@@ -974,7 +993,7 @@ function renderInventory(c) {
         </div>
         <div class="recipe-needs">${needsHtml}</div>
         <div class="actions">
-          <button ${canCraft ? '' : 'disabled'} onclick="craft('${r.id}')">Fabricar</button>
+          <button class="accept" ${canCraft ? '' : 'disabled'} onclick="craft('${r.id}')">Fabricar</button>
         </div>
       </div>`;
   }).join('') + `</div>`;
