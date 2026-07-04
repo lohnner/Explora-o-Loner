@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exploração Loner — Ponto Zero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="stars"></div>
+<div class="stars stars2"></div>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">
+      <h1>EXPLORAÇÃO <span>LONER</span></h1>
+      <div class="subtitle">Estação Ponto Zero · Setor Carmim</div>
+    </div>
+    <div class="credits-box">
+      <div class="credits"><span id="credits">0</span> ₵</div>
+      <small>créditos</small>
+    </div>
+  </header>
+
+  <!-- painel do jogador -->
+  <section class="player-panel">
+    <div class="avatar" id="avatar">🧑‍🚀</div>
+    <div class="player-info">
+      <div class="player-row">
+        <span class="level-badge">Nv. <b id="level">1</b></span>
+        <span class="rank" id="rank">Trabalhador</span>
+        <span class="ship-tag" id="shipName">a pé</span>
+      </div>
+      <div class="xp-outer" title="Experiência">
+        <div class="xp-inner" id="xpBar"></div>
+      </div>
+      <div class="xp-text"><span id="xpText">0 / 100 XP</span><span id="xpNext"></span></div>
+    </div>
+  </section>
+
+  <!-- estatísticas -->
+  <section class="stats-row">
+    <div class="stat"><b id="stJobs">0</b><span>serviços</span></div>
+    <div class="stat"><b id="stMissions">0</b><span>missões</span></div>
+    <div class="stat"><b id="stEarned">0</b><span>₵ total ganho</span></div>
+    <div class="stat"><b id="stItems">0</b><span>itens</span></div>
+  </section>
+
+  <div id="introBox" class="intro" style="display:none">
+    Você acorda no alojamento da <b>Estação Ponto Zero</b>, nos limites do setor. Sem nave, sem créditos — só a vontade de um dia cruzar as estrelas por conta própria.<br><br>
+    Pegue <b>serviços na estação</b> para juntar créditos e experiência aos poucos. Quando tiver o suficiente, compre sua primeira nave no <b>Hangar</b> e comece a aceitar <b>missões espaciais</b>. As ofertas mudam a cada hora — escolha bem.
+  </div>
+
+  <div id="activePanel" style="display:none"></div>
+
+  <nav class="tabs">
+    <div class="tab on" id="tab-jobs" onclick="setTab('jobs')"><span class="tab-icon">🔧</span>Serviços</div>
+    <div class="tab" id="tab-missions" onclick="setTab('missions')"><span class="tab-icon">🚀</span>Missões</div>
+    <div class="tab" id="tab-hangar" onclick="setTab('hangar')"><span class="tab-icon">🛰️</span>Hangar</div>
+    <div class="tab" id="tab-inventory" onclick="setTab('inventory')"><span class="tab-icon">🎒</span>Inventário<span class="tab-badge" id="invBadge" style="display:none">0</span></div>
+  </nav>
+
+  <div class="rotation-note" id="rotationNote"></div>
+  <div id="content"></div>
+
+  <section class="log-panel">
+    <h3>◈ Registro de bordo</h3>
+    <div id="log"></div>
+  </section>
+
+  <footer>Exploração Loner v2 · progresso salvo automaticamente neste navegador</footer>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="levelup" id="levelup"></div>
+
+<script src="game.js"></script>
+</body>
+</html>
