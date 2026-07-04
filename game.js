@@ -14,23 +14,23 @@ const JOBS = [
 ];
 
 const MISSIONS = [
-  { id:'taxi',     name:'Táxi Orbital',            desc:'Levar um passageiro até a plataforma vizinha.', min:33,  pay:30,  tier:1, lvl:1  },
-  { id:'gelo',     name:'Coleta de Gelo',          desc:'Raspar gelo de um cometa próximo.',             min:45,  pay:40,  tier:1, lvl:2  },
-  { id:'entrega',  name:'Entrega ao Cinturão',     desc:'Suprimentos para os mineradores do cinturão.',  min:70,  pay:58,  tier:1, lvl:3  },
-  { id:'patrulha', name:'Patrulha de Rotina',      desc:'Uma volta completa pelo perímetro do setor.',   min:120, pay:105, tier:1, lvl:4  },
-  { id:'resgate',  name:'Resgate de Sonda',        desc:'Recuperar uma sonda perdida à deriva.',         min:60,  pay:88,  tier:2, lvl:8  },
-  { id:'escolta',  name:'Escolta de Comboio',      desc:'Proteger cargueiros até o portal de salto.',    min:90,  pay:135, tier:2, lvl:9  },
-  { id:'minerar',  name:'Mineração em Asteroide',  desc:'Extrair minério raro num asteroide instável.',  min:150, pay:215, tier:2, lvl:11 },
-  { id:'corp',     name:'Contrato Corporativo',    desc:'Transporte discreto. Não faça perguntas.',      min:120, pay:290, tier:3, lvl:16 },
-  { id:'nebulosa', name:'Expedição à Nebulosa',    desc:'Coletar dados dentro da nebulosa Carmim.',      min:180, pay:410, tier:3, lvl:18 },
-  { id:'mapear',   name:'Mapeamento de Setor',     desc:'Cartografar uma região inexplorada.',           min:240, pay:540, tier:3, lvl:20 },
+  { id:'taxi',     name:'Táxi Orbital',            desc:'Levar um passageiro até a plataforma vizinha.', min:33,  pay:30,  tier:1, lvl:1,  faction:'sindicato',   loc:{ name:'Plataforma Vex',    icon:'🛰️', x:36, y:28 } },
+  { id:'gelo',     name:'Coleta de Gelo',          desc:'Raspar gelo de um cometa próximo.',             min:45,  pay:40,  tier:1, lvl:2,  faction:'mineradores', loc:{ name:'Cometa Idris',      icon:'☄️', x:68, y:18 } },
+  { id:'entrega',  name:'Entrega ao Cinturão',     desc:'Suprimentos para os mineradores do cinturão.',  min:70,  pay:58,  tier:1, lvl:3,  faction:'mineradores', loc:{ name:'Cinturão de Ferro', icon:'🪨', x:20, y:52 } },
+  { id:'patrulha', name:'Patrulha de Rotina',      desc:'Uma volta completa pelo perímetro do setor.',   min:120, pay:105, tier:1, lvl:4,  faction:'corp',        loc:{ name:'Rota de Patrulha',  icon:'📍', x:72, y:62 } },
+  { id:'resgate',  name:'Resgate de Sonda',        desc:'Recuperar uma sonda perdida à deriva.',         min:60,  pay:88,  tier:2, lvl:8,  faction:'corp',        loc:{ name:'Campo de Destroços',icon:'🛠️', x:32, y:76 } },
+  { id:'escolta',  name:'Escolta de Comboio',      desc:'Proteger cargueiros até o portal de salto.',    min:90,  pay:135, tier:2, lvl:9,  faction:'corp',        loc:{ name:'Portal de Salto',   icon:'🌀', x:86, y:38 } },
+  { id:'minerar',  name:'Mineração em Asteroide',  desc:'Extrair minério raro num asteroide instável.',  min:150, pay:215, tier:2, lvl:11, faction:'mineradores', loc:{ name:'Asteroide X-77',    icon:'💎', x:14, y:22 } },
+  { id:'corp',     name:'Contrato Corporativo',    desc:'Transporte discreto. Não faça perguntas.',      min:120, pay:290, tier:3, lvl:16, faction:'corp',        loc:{ name:'Estação Helios',    icon:'🏢', x:58, y:80 } },
+  { id:'nebulosa', name:'Expedição à Nebulosa',    desc:'Coletar dados dentro da nebulosa Carmim.',      min:180, pay:410, tier:3, lvl:18, faction:'sindicato',   loc:{ name:'Nebulosa Carmim',   icon:'🔮', x:88, y:80 } },
+  { id:'mapear',   name:'Mapeamento de Setor',     desc:'Cartografar uma região inexplorada.',           min:240, pay:540, tier:3, lvl:20, faction:'sindicato',   loc:{ name:'Zona Inexplorada',  icon:'❓', x:10, y:84 } },
 ];
 
 const SHIPS = [
-  { tier:0, name:'—',               icon:'',   desc:'', price:0, lvl:0 },
-  { tier:1, name:'Vaga-Lume',       icon:'🛸', desc:'Um cargueiro usado, cheio de remendos, mas voa. Libera missões básicas.',       price:350,  lvl:1  },
-  { tier:2, name:'Falcão de Ferro', icon:'🚀', desc:'Casco reforçado e motores decentes. Libera missões de médio alcance.',          price:1500, lvl:8  },
-  { tier:3, name:'Aurora Estelar',  icon:'🛰️', desc:'Uma beleza de nave. Alcança os cantos mais fundos do setor. Missões de elite.', price:6000, lvl:16 },
+  { tier:0, name:'—',               icon:'',   desc:'', price:0, lvl:0, tank:0, slots:0 },
+  { tier:1, name:'Vaga-Lume',       icon:'🛸', desc:'Um cargueiro usado, cheio de remendos, mas voa. Libera missões básicas.',       price:350,  lvl:1,  tank:40,  slots:2 },
+  { tier:2, name:'Falcão de Ferro', icon:'🚀', desc:'Casco reforçado e motores decentes. Libera missões de médio alcance.',          price:1500, lvl:8,  tank:70,  slots:3 },
+  { tier:3, name:'Aurora Estelar',  icon:'🛰️', desc:'Uma beleza de nave. Alcança os cantos mais fundos do setor. Missões de elite.', price:6000, lvl:16, tank:120, slots:5 },
 ];
 
 const RANKS = [
@@ -44,19 +44,23 @@ const RANKS = [
 ];
 
 const ITEMS = {
-  sucata:      { name:'Sucata de Metal',      icon:'🔩', value:3,   rarity:'comum' },
-  cabo:        { name:'Cabo Usado',           icon:'🔌', value:2,   rarity:'comum' },
-  racao:       { name:'Ração Espacial',       icon:'🥫', value:2,   rarity:'comum' },
-  ferramenta:  { name:'Ferramenta Gasta',     icon:'🔧', value:4,   rarity:'comum' },
-  minerio:     { name:'Minério de Ferro',     icon:'🪨', value:7,   rarity:'incomum' },
-  gelo:        { name:'Fragmento de Gelo',    icon:'🧊', value:5,   rarity:'incomum' },
-  circuito:    { name:'Circuito Recuperado',  icon:'💾', value:10,  rarity:'incomum' },
-  liga:        { name:'Liga Reforçada',       icon:'⚙️', value:28,  rarity:'raro' },
-  nucleo:      { name:'Núcleo de Sonda',      icon:'🔋', value:42,  rarity:'raro' },
-  minerioRaro: { name:'Minério Raro',         icon:'💎', value:35,  rarity:'raro' },
-  cristal:     { name:'Cristal da Nebulosa',  icon:'🔮', value:95,  rarity:'épico' },
-  dados:       { name:'Dados de Setor',       icon:'🗺️', value:120, rarity:'épico' },
-  artefato:    { name:'Artefato Antigo',      icon:'🏺', value:220, rarity:'lendário' },
+  sucata:      { name:'Sucata de Metal',        icon:'🔩', value:3,   rarity:'comum' },
+  cabo:        { name:'Cabo Usado',             icon:'🔌', value:2,   rarity:'comum' },
+  racao:       { name:'Ração Espacial',         icon:'🥫', value:2,   rarity:'comum' },
+  ferramenta:  { name:'Ferramenta Gasta',       icon:'🔧', value:4,   rarity:'comum' },
+  minerio:     { name:'Minério de Ferro',       icon:'🪨', value:7,   rarity:'incomum' },
+  gelo:        { name:'Fragmento de Gelo',      icon:'🧊', value:5,   rarity:'incomum' },
+  circuito:    { name:'Circuito Recuperado',    icon:'💾', value:10,  rarity:'incomum' },
+  chapa:       { name:'Chapa de Casco',         icon:'🛡️', value:22,  rarity:'incomum' },
+  liga:        { name:'Liga Reforçada',         icon:'⚙️', value:28,  rarity:'raro' },
+  nucleo:      { name:'Núcleo de Sonda',        icon:'🔋', value:42,  rarity:'raro' },
+  minerioRaro: { name:'Minério Raro',           icon:'💎', value:35,  rarity:'raro' },
+  componente:  { name:'Componente Eletrônico',  icon:'⚡', value:32,  rarity:'raro' },
+  cristal:     { name:'Cristal da Nebulosa',    icon:'🔮', value:95,  rarity:'épico' },
+  dados:       { name:'Dados de Setor',         icon:'🗺️', value:120, rarity:'épico' },
+  ligaTemp:    { name:'Liga Temperada',         icon:'🔗', value:110, rarity:'épico' },
+  baliza:      { name:'Baliza Estelar',         icon:'📡', value:160, rarity:'épico' },
+  artefato:    { name:'Artefato Antigo',        icon:'🏺', value:220, rarity:'lendário' },
 };
 
 const LOOT_JOB = ['sucata', 'cabo', 'racao', 'ferramenta'];
@@ -64,7 +68,66 @@ const LOOT_T1  = ['minerio', 'gelo', 'circuito'];
 const LOOT_T2  = ['liga', 'nucleo', 'minerioRaro'];
 const LOOT_T3  = ['cristal', 'dados', 'artefato'];
 
+const RECIPES = [
+  { id:'chapa',      name:'Chapa de Casco',         icon:'🛡️', out:{ item:'chapa' },      needs:{ sucata:4, ferramenta:1 },  outDesc:'1× Chapa de Casco' },
+  { id:'componente', name:'Componente Eletrônico',  icon:'⚡', out:{ item:'componente' }, needs:{ cabo:2, circuito:2 },      outDesc:'1× Componente Eletrônico' },
+  { id:'celula',     name:'Célula de Combustível',  icon:'⛽', out:{ fuel:15 },           needs:{ gelo:2, sucata:1 },        outDesc:'+15 de combustível' },
+  { id:'ligaTemp',   name:'Liga Temperada',         icon:'🔗', out:{ item:'ligaTemp' },   needs:{ liga:2, minerioRaro:1 },   outDesc:'1× Liga Temperada' },
+  { id:'baliza',     name:'Baliza Estelar',         icon:'📡', out:{ item:'baliza' },     needs:{ nucleo:1, componente:2 },  outDesc:'1× Baliza Estelar' },
+];
+
+const MODULES = [
+  { id:'motor',     name:'Motor Otimizado',    icon:'🔥', effect:'−10% tempo de missão',            price:450, needs:{ chapa:2, componente:1 } },
+  { id:'porao',     name:'Porão Expandido',    icon:'📦', effect:'+1 item de loot em missões',      price:400, needs:{ chapa:3 } },
+  { id:'tanque',    name:'Tanque Auxiliar',    icon:'⛽', effect:'+25 de combustível máximo',       price:300, needs:{ componente:2 } },
+  { id:'antena',    name:'Antena Quântica',    icon:'📡', effect:'+15% XP ganho',                   price:600, needs:{ baliza:1 } },
+  { id:'refinaria', name:'Refinaria Compacta', icon:'⚗️', effect:'+20% no valor de venda de itens', price:800, needs:{ ligaTemp:2 } },
+];
+
+const FACTIONS = {
+  corp:        { name:'Corporação Helios',    icon:'🏢', color:'#4fa8ff', benefit:'Desconto no hangar e módulos (−2% por nível)', rival:'sindicato' },
+  mineradores: { name:'União dos Mineradores', icon:'⛏️', color:'#ffc857', benefit:'Valor de venda de itens (+2% por nível)',      rival:null },
+  sindicato:   { name:'Sindicato Livre',       icon:'🕶️', color:'#b784ff', benefit:'XP ganho (+2% por nível)',                     rival:'corp' },
+};
+
+const REP_LEVELS = [
+  { at:0,   name:'Desconhecido' },
+  { at:10,  name:'Conhecido' },
+  { at:30,  name:'Respeitado' },
+  { at:60,  name:'Aliado' },
+  { at:100, name:'Lendário' },
+];
+
+const DAILY_POOL = [
+  { id:'helios',   name:'Carga Prioritária Helios', desc:'A Corporação precisa disto entregue ontem. Pagamento à altura.',        faction:'corp' },
+  { id:'vip',      name:'Resgate VIP',              desc:'Um executivo encalhado numa cápsula de fuga. Discrição total.',          faction:'corp' },
+  { id:'platina',  name:'Veio de Platina',          desc:'Os Mineradores acharam um veio raro e precisam de transporte urgente.',  faction:'mineradores' },
+  { id:'geleira',  name:'Colheita da Geleira',      desc:'Janela curta para extrair gelo puro de um cometa em rota de saída.',     faction:'mineradores' },
+  { id:'semnome',  name:'Encomenda Sem Rótulo',     desc:'O Sindicato paga bem para quem não abre a caixa.',                       faction:'sindicato' },
+  { id:'fantasma', name:'Sinal Fantasma',           desc:'Um sinal estranho no limite do setor. O Sindicato quer saber o que é.',  faction:'sindicato' },
+];
+
+const ACHIEVEMENTS = [
+  { id:'srv1',    name:'Primeiro Turno',       desc:'Complete 1 serviço na estação',        reward:10,   cond: lv => S.jobsDone >= 1 },
+  { id:'srv25',   name:'Operário Dedicado',    desc:'Complete 25 serviços',                 reward:60,   cond: lv => S.jobsDone >= 25 },
+  { id:'srv100',  name:'Veterano da Estação',  desc:'Complete 100 serviços',                reward:250,  cond: lv => S.jobsDone >= 100 },
+  { id:'mis1',    name:'Primeira Missão',      desc:'Complete 1 missão espacial',           reward:25,   cond: lv => S.missionsDone >= 1 },
+  { id:'mis50',   name:'Piloto Veterano',      desc:'Complete 50 missões',                  reward:350,  cond: lv => S.missionsDone >= 50 },
+  { id:'lvl10',   name:'Década',               desc:'Alcance o nível 10',                   reward:100,  cond: lv => lv >= 10 },
+  { id:'lvl25',   name:'Quarto de Século',     desc:'Alcance o nível 25',                   reward:500,  cond: lv => lv >= 25 },
+  { id:'lvl50',   name:'Meio Século',          desc:'Alcance o nível 50',                   reward:2000, cond: lv => lv >= 50 },
+  { id:'rico',    name:'Primeiro Milheiro',    desc:'Acumule 1.000 ₵ ganhos no total',      reward:100,  cond: lv => S.totalEarned >= 1000 },
+  { id:'magnata', name:'Magnata do Setor',     desc:'Acumule 10.000 ₵ ganhos no total',     reward:500,  cond: lv => S.totalEarned >= 10000 },
+  { id:'lend',    name:'Toque Lendário',       desc:'Obtenha um item lendário',             reward:150,  cond: lv => S.flags.legendary },
+  { id:'aurora',  name:'Frota Própria',        desc:'Compre a Aurora Estelar',              reward:300,  cond: lv => S.ship >= 3 },
+  { id:'craft10', name:'Artesão Espacial',     desc:'Fabrique 10 itens',                    reward:120,  cond: lv => S.crafts >= 10 },
+  { id:'aliado',  name:'Diplomata',            desc:'Torne-se Aliado de alguma facção',     reward:200,  cond: lv => Object.values(S.rep).some(r => r >= 60) },
+  { id:'daily5',  name:'Cliente Fiel',         desc:'Complete 5 contratos diários',         reward:250,  cond: lv => S.dailiesDone >= 5 },
+];
+
 const HOUR = 3600000;
+const DAY = 86400000;
+const FUEL_PRICE = 2;
 const SAVE_KEY = 'exploracao-loner-save';
 
 /* ================= ESTADO ================= */
@@ -73,11 +136,19 @@ let S = {
   credits: 0,
   xp: 0,
   ship: 0,
+  fuel: 0,
   totalEarned: 0,
   jobsDone: 0,
   missionsDone: 0,
-  activity: null,   // {kind, name, tier, startTs, endTs, reward, xp}
+  dailiesDone: 0,
+  crafts: 0,
+  activity: null,   // {kind, name, tier, faction, startTs, endTs, reward, xp, day?}
   inventory: {},    // {itemId: qty}
+  modules: [],      // ids de módulos instalados
+  rep: { corp:0, mineradores:0, sindicato:0 },
+  achievements: [],
+  flags: { legendary:false },
+  dailyDone: -1,    // dayIndex do último contrato diário concluído
   log: [],
   seenIntro: false,
 };
@@ -88,9 +159,17 @@ function load() {
     const raw = localStorage.getItem(SAVE_KEY);
     if (raw) S = Object.assign(S, JSON.parse(raw));
   } catch (e) { /* save corrompido, começa do zero */ }
+  // migração de saves antigos
   if (typeof S.xp !== 'number') S.xp = 0;
+  if (typeof S.fuel !== 'number') S.fuel = S.ship > 0 ? Math.round(SHIPS[S.ship].tank / 2) : 0;
+  if (typeof S.dailiesDone !== 'number') S.dailiesDone = 0;
+  if (typeof S.crafts !== 'number') S.crafts = 0;
+  if (typeof S.dailyDone !== 'number') S.dailyDone = -1;
   if (!S.inventory) S.inventory = {};
-  // migração de save antigo: atividade sem XP/tier definidos
+  if (!S.modules) S.modules = [];
+  if (!S.rep) S.rep = { corp:0, mineradores:0, sindicato:0 };
+  if (!S.achievements) S.achievements = [];
+  if (!S.flags) S.flags = { legendary:false };
   if (S.activity && typeof S.activity.xp !== 'number') {
     S.activity.xp = Math.round(S.activity.reward || 10);
     S.activity.tier = S.activity.tier || 0;
@@ -99,7 +178,6 @@ function load() {
 
 /* ================= LEVEL (fórmula do Tibia, sem limite) ================= */
 
-// XP total necessário para alcançar o nível L
 function xpForLevel(L) {
   return Math.floor((50 / 3) * (L * L * L - 6 * L * L + 17 * L - 12));
 }
@@ -118,7 +196,33 @@ function gainXp(amount) {
   return after > before;
 }
 
-/* ================= ROTAÇÃO (muda a cada hora) ================= */
+/* ================= REPUTAÇÃO ================= */
+
+function repLevel(f) {
+  let lvl = 0;
+  for (let i = 0; i < REP_LEVELS.length; i++) if (S.rep[f] >= REP_LEVELS[i].at) lvl = i;
+  return lvl;
+}
+
+function repLevelName(f) { return REP_LEVELS[repLevel(f)].name; }
+
+function gainRep(faction, amount) {
+  S.rep[faction] = (S.rep[faction] || 0) + amount;
+  const rival = FACTIONS[faction].rival;
+  if (rival && S.rep[rival] > 0) S.rep[rival] = Math.max(0, S.rep[rival] - 1);
+}
+
+/* ================= BÔNUS ================= */
+
+function moduleOwned(id) { return S.modules.includes(id); }
+function maxFuel() { return S.ship === 0 ? 0 : SHIPS[S.ship].tank + (moduleOwned('tanque') ? 25 : 0); }
+function xpMult() { return (moduleOwned('antena') ? 1.15 : 1) * (1 + repLevel('sindicato') * 0.02); }
+function sellMult() { return (moduleOwned('refinaria') ? 1.2 : 1) * (1 + repLevel('mineradores') * 0.02); }
+function hangarMult() { return 1 - repLevel('corp') * 0.02; }
+function shipPrice(ship) { return Math.round(ship.price * hangarMult()); }
+function modulePrice(mod) { return Math.round(mod.price * hangarMult()); }
+
+/* ================= ROTAÇÃO E MERCADO (mudam a cada hora) ================= */
 
 function mulberry32(seed) {
   return function () {
@@ -129,21 +233,51 @@ function mulberry32(seed) {
   };
 }
 
+function hashStr(s) {
+  let h = 0;
+  for (let i = 0; i < s.length; i++) h = (Math.imul(h, 31) + s.charCodeAt(i)) | 0;
+  return h;
+}
+
 function hourIndex() { return Math.floor(Date.now() / HOUR); }
+function dayIndex() { return Math.floor(Date.now() / DAY); }
+
+// multiplicador de mercado do item nesta hora (0.7x a 1.4x)
+function marketMult(itemId) {
+  const rng = mulberry32(hourIndex() * 2654435761 + hashStr(itemId));
+  return 0.7 + rng() * 0.7;
+}
+
+function sellPrice(itemId) {
+  return Math.max(1, Math.round(ITEMS[itemId].value * marketMult(itemId) * sellMult()));
+}
+
+function missionFuelCost(min, tier) { return Math.round(min / 6 + tier * 4); }
+
+function decorateOffer(item, min, pay, kind) {
+  let xp;
+  if (kind === 'job') {
+    xp = Math.round((min * 1.2 + pay * 0.5) * xpMult());
+    return { ...item, min, pay, xp };
+  }
+  // missões: módulos e reputação
+  if (moduleOwned('motor')) min = Math.max(10, Math.round(min * 0.9));
+  pay = Math.round(pay * (1 + repLevel(item.faction) * 0.05));
+  xp = Math.round((min * 1.8 + pay) * (1 + 0.25 * ((item.tier || 1) - 1)) * xpMult());
+  const fuel = missionFuelCost(min, item.tier || 1);
+  const { loc, ...rest } = item; // loc não precisa ir no botão
+  return { ...rest, min, pay, xp, fuel };
+}
 
 function currentOffers(pool, seedSalt, count, kind) {
   const rng = mulberry32(hourIndex() * 2654435761 + seedSalt);
   const shuffled = pool.slice().sort(() => rng() - 0.5);
   return shuffled.slice(0, count).map(item => {
-    // variação leve de tempo e pagamento a cada rotação
     const durVar = 0.85 + rng() * 0.3;
     const payVar = 0.9 + rng() * 0.25;
     const min = Math.max(15, Math.round(item.min * durVar));
     const pay = Math.max(5, Math.round(item.pay * payVar));
-    const xp = kind === 'job'
-      ? Math.round(min * 1.2 + pay * 0.5)
-      : Math.round((min * 1.8 + pay) * (1 + 0.25 * (item.tier - 1)));
-    return { ...item, min, pay, xp };
+    return decorateOffer(item, min, pay, kind);
   });
 }
 
@@ -152,6 +286,26 @@ function missionOffers() {
   const available = MISSIONS.filter(m => m.tier <= S.ship);
   if (!available.length) return [];
   return currentOffers(available, 91, Math.min(3, available.length), 'mission');
+}
+
+// contrato diário: um por dia, escala com o nível do jogador
+function dailyContract() {
+  if (S.ship === 0) return null;
+  const day = dayIndex();
+  const rng = mulberry32(day * 2654435761 + 777);
+  const base = DAILY_POOL[Math.floor(rng() * DAILY_POOL.length)];
+  const lv = levelFromXp(S.xp);
+  const min = Math.round(90 + rng() * 150);
+  const pay = Math.round((90 + lv * 14) * (0.9 + rng() * 0.3) * (1 + repLevel(base.faction) * 0.05));
+  const tier = lv >= 16 ? 3 : lv >= 8 ? 2 : 1;
+  const adjMin = moduleOwned('motor') ? Math.max(10, Math.round(min * 0.9)) : min;
+  const xp = Math.round((adjMin * 1.8 + pay) * 1.4 * xpMult());
+  return {
+    ...base, min: adjMin, pay, xp, tier,
+    lvl: 5,
+    fuel: missionFuelCost(adjMin, tier),
+    day,
+  };
 }
 
 /* ================= LOOT ================= */
@@ -164,7 +318,9 @@ function rollLoot(kind, tier) {
   if (kind === 'job') {
     if (rng() < 0.5) drops.push(pick(rng, LOOT_JOB));
     if (rng() < 0.06) drops.push(pick(rng, LOOT_T1));
-  } else if (tier === 1) {
+    return drops;
+  }
+  if (tier === 1) {
     drops.push(pick(rng, LOOT_T1));
     if (rng() < 0.35) drops.push(pick(rng, LOOT_T1));
     if (rng() < 0.08) drops.push(pick(rng, LOOT_T2));
@@ -176,6 +332,11 @@ function rollLoot(kind, tier) {
     drops.push(pick(rng, LOOT_T3));
     if (rng() < 0.5) drops.push(pick(rng, LOOT_T2));
   }
+  // Porão Expandido: +1 item garantido em missões
+  if (moduleOwned('porao')) {
+    const pools = { 1: LOOT_T1, 2: LOOT_T2, 3: LOOT_T3 };
+    drops.push(pick(rng, pools[tier] || LOOT_T1));
+  }
   return drops;
 }
 
@@ -184,7 +345,30 @@ function invCount() {
 }
 
 function invTotalValue() {
-  return Object.entries(S.inventory).reduce((sum, [id, qty]) => sum + ITEMS[id].value * qty, 0);
+  return Object.entries(S.inventory).reduce((sum, [id, qty]) => sum + sellPrice(id) * qty, 0);
+}
+
+/* ================= CONQUISTAS ================= */
+
+function checkAchievements() {
+  const news = [];
+  let changed = true;
+  while (changed) {
+    changed = false;
+    const lv = levelFromXp(S.xp);
+    for (const a of ACHIEVEMENTS) {
+      if (!S.achievements.includes(a.id) && a.cond(lv)) {
+        S.achievements.push(a.id);
+        S.credits += a.reward;
+        S.totalEarned += a.reward;
+        news.push(a);
+        changed = true;
+      }
+    }
+  }
+  for (const a of news) addLog(`🏆 Conquista: <b>${a.name}</b> · +${a.reward} ₵`);
+  if (news.length) toast(`🏆 ${news[news.length - 1].name} · +${news[news.length - 1].reward} ₵`);
+  return news.length > 0;
 }
 
 /* ================= AÇÕES ================= */
@@ -192,18 +376,26 @@ function invTotalValue() {
 function startActivity(kind, offer) {
   if (S.activity) return;
   if (offer.lvl && levelFromXp(S.xp) < offer.lvl) { toast(`Requer nível ${offer.lvl}!`); return; }
+  if (kind !== 'job') {
+    if (kind === 'daily' && S.dailyDone === offer.day) { toast('Contrato de hoje já concluído!'); return; }
+    if (S.fuel < offer.fuel) { toast(`Combustível insuficiente (precisa de ${offer.fuel} ⛽)`); return; }
+    S.fuel -= offer.fuel;
+  }
   const now = Date.now();
   S.activity = {
     kind,
     name: offer.name,
     tier: offer.tier || 0,
+    faction: offer.faction || null,
+    day: offer.day,
     startTs: now,
     endTs: now + offer.min * 60000,
     reward: offer.pay,
     xp: offer.xp,
   };
   S.seenIntro = true;
-  addLog(`${kind === 'job' ? 'Serviço' : 'Missão'} iniciado: ${offer.name} (${fmtDur(offer.min)})`);
+  const label = kind === 'job' ? 'Serviço' : kind === 'daily' ? 'Contrato diário' : 'Missão';
+  addLog(`${label} iniciado: ${offer.name} (${fmtDur(offer.min)})`);
   save();
   render();
 }
@@ -213,26 +405,42 @@ function collectActivity() {
   if (!a || Date.now() < a.endTs) return;
   S.credits += a.reward;
   S.totalEarned += a.reward;
-  if (a.kind === 'job') S.jobsDone++; else S.missionsDone++;
+
+  if (a.kind === 'job') {
+    S.jobsDone++;
+  } else {
+    S.missionsDone++;
+    if (a.kind === 'daily') {
+      S.dailiesDone++;
+      if (typeof a.day === 'number') S.dailyDone = a.day;
+    }
+    if (a.faction) gainRep(a.faction, a.kind === 'daily' ? 5 : 1 + a.tier);
+  }
 
   const leveled = gainXp(a.xp);
-  const drops = rollLoot(a.kind, a.tier);
-  for (const id of drops) S.inventory[id] = (S.inventory[id] || 0) + 1;
+  const drops = rollLoot(a.kind === 'job' ? 'job' : 'mission', a.tier || 1);
+  for (const id of drops) {
+    S.inventory[id] = (S.inventory[id] || 0) + 1;
+    if (ITEMS[id].rarity === 'lendário') S.flags.legendary = true;
+  }
 
   const dropTxt = drops.length
     ? ' · ' + drops.map(id => `${ITEMS[id].icon} ${ITEMS[id].name}`).join(', ')
     : '';
-  addLog(`${a.kind === 'job' ? 'Serviço' : 'Missão'} concluído: ${a.name} · <b>+${a.reward} ₵</b> · <span class="xpg">+${a.xp} XP</span>${dropTxt}`);
+  const label = a.kind === 'job' ? 'Serviço' : a.kind === 'daily' ? 'Contrato diário' : 'Missão';
+  addLog(`${label} concluído: ${a.name} · <b>+${a.reward} ₵</b> · <span class="xpg">+${a.xp} XP</span>${dropTxt}`);
 
   S.activity = null;
+  const gotAch = checkAchievements();
   save();
-  if (!leveled) toast(`+${a.reward} ₵ · +${a.xp} XP${drops.length ? ' · ' + drops.map(id => ITEMS[id].icon).join(' ') : ''}`);
+  if (!leveled && !gotAch) toast(`+${a.reward} ₵ · +${a.xp} XP${drops.length ? ' · ' + drops.map(id => ITEMS[id].icon).join(' ') : ''}`);
   render();
 }
 
 function abandonActivity() {
   if (!S.activity) return;
-  if (!confirm('Abandonar sem receber nada?')) return;
+  const wasFlight = S.activity.kind !== 'job';
+  if (!confirm(`Abandonar sem receber nada?${wasFlight ? ' O combustível gasto não volta.' : ''}`)) return;
   addLog(`Abandonado: ${S.activity.name} (sem pagamento)`);
   S.activity = null;
   save();
@@ -241,14 +449,78 @@ function abandonActivity() {
 
 function buyShip(tier) {
   const ship = SHIPS[tier];
-  if (S.credits < ship.price || S.ship >= tier) return;
+  const price = shipPrice(ship);
+  if (S.credits < price || S.ship >= tier) return;
   if (levelFromXp(S.xp) < ship.lvl) { toast(`Requer nível ${ship.lvl}!`); return; }
-  S.credits -= ship.price;
+  S.credits -= price;
   S.ship = tier;
-  addLog(`Nave adquirida: <b>${ship.name}</b> por ${fmtCredits(ship.price)} ₵`);
+  S.fuel = Math.min(maxFuel(), Math.max(S.fuel, Math.round(ship.tank / 2)));
+  addLog(`Nave adquirida: <b>${ship.name}</b> por ${fmtCredits(price)} ₵`);
+  checkAchievements();
   save();
   toast(`${ship.icon} ${ship.name} é sua!`);
   if (tier === 1) setTab('missions');
+  render();
+}
+
+function buyFuel(qty) {
+  const room = maxFuel() - S.fuel;
+  if (room <= 0) { toast('Tanque cheio!'); return; }
+  const n = Math.min(qty, room, Math.floor(S.credits / FUEL_PRICE));
+  if (n <= 0) { toast('Créditos insuficientes!'); return; }
+  S.credits -= n * FUEL_PRICE;
+  S.fuel += n;
+  addLog(`Abastecido: +${n} ⛽ por ${n * FUEL_PRICE} ₵`);
+  save();
+  render();
+}
+
+function buyModule(id) {
+  const mod = MODULES.find(m => m.id === id);
+  if (!mod || moduleOwned(id)) return;
+  if (S.ship === 0) { toast('Você precisa de uma nave!'); return; }
+  if (S.modules.length >= SHIPS[S.ship].slots) { toast('Sem slots livres nesta nave!'); return; }
+  const price = modulePrice(mod);
+  if (S.credits < price) { toast('Créditos insuficientes!'); return; }
+  for (const [itemId, need] of Object.entries(mod.needs)) {
+    if ((S.inventory[itemId] || 0) < need) { toast(`Falta: ${ITEMS[itemId].name}`); return; }
+  }
+  S.credits -= price;
+  for (const [itemId, need] of Object.entries(mod.needs)) {
+    S.inventory[itemId] -= need;
+    if (S.inventory[itemId] <= 0) delete S.inventory[itemId];
+  }
+  S.modules.push(id);
+  addLog(`Módulo instalado: <b>${mod.icon} ${mod.name}</b>`);
+  save();
+  toast(`${mod.icon} ${mod.name} instalado!`);
+  render();
+}
+
+function craft(recipeId) {
+  const r = RECIPES.find(x => x.id === recipeId);
+  if (!r) return;
+  for (const [itemId, need] of Object.entries(r.needs)) {
+    if ((S.inventory[itemId] || 0) < need) { toast(`Falta: ${ITEMS[itemId].name}`); return; }
+  }
+  if (r.out.fuel && maxFuel() === 0) { toast('Você precisa de uma nave para usar combustível!'); return; }
+  for (const [itemId, need] of Object.entries(r.needs)) {
+    S.inventory[itemId] -= need;
+    if (S.inventory[itemId] <= 0) delete S.inventory[itemId];
+  }
+  S.crafts++;
+  if (r.out.item) {
+    S.inventory[r.out.item] = (S.inventory[r.out.item] || 0) + 1;
+    addLog(`Fabricado: ${r.icon} <b>${r.name}</b>`);
+    toast(`${r.icon} ${r.name} fabricado!`);
+  } else if (r.out.fuel) {
+    const gained = Math.min(r.out.fuel, maxFuel() - S.fuel);
+    S.fuel += gained;
+    addLog(`Fabricado: ${r.icon} Célula de Combustível · +${gained} ⛽`);
+    toast(`⛽ +${gained} combustível!`);
+  }
+  checkAchievements();
+  save();
   render();
 }
 
@@ -256,12 +528,13 @@ function sellItem(id, qty) {
   const have = S.inventory[id] || 0;
   if (!have) return;
   const n = Math.min(qty, have);
-  const total = ITEMS[id].value * n;
+  const total = sellPrice(id) * n;
   S.inventory[id] = have - n;
   if (S.inventory[id] <= 0) delete S.inventory[id];
   S.credits += total;
   S.totalEarned += total;
   addLog(`Vendido: ${n}× ${ITEMS[id].icon} ${ITEMS[id].name} · <b>+${total} ₵</b>`);
+  checkAchievements();
   save();
   toast(`+${total} ₵`);
   render();
@@ -270,11 +543,12 @@ function sellItem(id, qty) {
 function sellAll() {
   const total = invTotalValue();
   if (!total) return;
-  if (!confirm(`Vender todos os itens por ${fmtCredits(total)} ₵?`)) return;
+  if (!confirm(`Vender todos os itens por ${fmtCredits(total)} ₵ (preços de mercado desta hora)?`)) return;
   S.inventory = {};
   S.credits += total;
   S.totalEarned += total;
   addLog(`Inventário inteiro vendido · <b>+${fmtCredits(total)} ₵</b>`);
+  checkAchievements();
   save();
   toast(`+${fmtCredits(total)} ₵`);
   render();
@@ -318,13 +592,24 @@ function rarityClass(r) {
   return 'r-' + r.normalize('NFD').replace(/[̀-ͯ]/g, '');
 }
 
+function factionChip(f) {
+  const fx = FACTIONS[f];
+  return `<span class="faction-chip" style="color:${fx.color}">${fx.icon} ${fx.name}</span>`;
+}
+
 /* ================= UI ================= */
 
 let tab = 'jobs';
+let mapSel = null;
 
 function setTab(t) {
   if (t === 'missions' && S.ship === 0) { toast('Você precisa de uma nave primeiro!'); return; }
   tab = t;
+  render();
+}
+
+function selectLoc(id) {
+  mapSel = mapSel === id ? null : id;
   render();
 }
 
@@ -348,6 +633,17 @@ function render() {
   document.getElementById('xpNext').textContent =
     `faltam ${fmtCredits(next - S.xp)} XP para o nível ${lv + 1}`;
 
+  // combustível
+  const fuelRow = document.getElementById('fuelRow');
+  if (S.ship > 0) {
+    fuelRow.style.display = 'flex';
+    const mx = maxFuel();
+    document.getElementById('fuelBar').style.width = (mx ? (S.fuel / mx) * 100 : 0).toFixed(1) + '%';
+    document.getElementById('fuelText').textContent = `${S.fuel}/${mx}`;
+  } else {
+    fuelRow.style.display = 'none';
+  }
+
   // estatísticas
   document.getElementById('stJobs').textContent = S.jobsDone;
   document.getElementById('stMissions').textContent = S.missionsDone;
@@ -358,7 +654,7 @@ function render() {
     (!S.seenIntro && S.totalEarned === 0) ? 'block' : 'none';
 
   // abas
-  for (const t of ['jobs', 'missions', 'hangar', 'inventory']) {
+  for (const t of ['jobs', 'missions', 'map', 'hangar', 'inventory', 'profile']) {
     const el = document.getElementById('tab-' + t);
     el.classList.toggle('on', tab === t);
     el.classList.toggle('locked', t === 'missions' && S.ship === 0);
@@ -385,16 +681,20 @@ function renderActive() {
   const done = Math.min(1, (now - a.startTs) / total);
   const remaining = a.endTs - now;
   const finished = remaining <= 0;
+  const label = a.kind === 'job' ? '🔧 Serviço em andamento'
+    : a.kind === 'daily' ? '⭐ Contrato diário em andamento'
+    : '🚀 Missão em andamento';
 
   panel.className = 'active-panel';
   panel.innerHTML = `
-    <div class="type-tag">${a.kind === 'job' ? '🔧 Serviço em andamento' : '🚀 Missão em andamento'}</div>
+    <div class="type-tag">${label}</div>
     <h3>${a.name}</h3>
     <div class="progress-outer"><div class="progress-inner" style="width:${(done * 100).toFixed(1)}%"></div></div>
     <div class="active-row">
       <div class="active-rewards">
         <span class="rw-pay">+${a.reward} ₵</span>
         <span class="rw-xp">+${a.xp} XP</span>
+        ${a.faction ? factionChip(a.faction) : ''}
       </div>
       ${finished
         ? `<button class="collect" onclick="collectActivity()">✔ Concluir e receber</button>`
@@ -406,9 +706,10 @@ function renderActive() {
 
 function renderRotation() {
   const el = document.getElementById('rotationNote');
-  if (tab === 'hangar' || tab === 'inventory') { el.textContent = ''; return; }
+  if (!['jobs', 'missions', 'map', 'inventory'].includes(tab)) { el.textContent = ''; return; }
   const msLeft = (hourIndex() + 1) * HOUR - Date.now();
-  el.textContent = `↻ Novas ofertas em ${fmtCountdown(msLeft)}`;
+  const what = tab === 'inventory' ? 'Preços de mercado mudam' : 'Novas ofertas';
+  el.textContent = `↻ ${what} em ${fmtCountdown(msLeft)}`;
 }
 
 function renderContent() {
@@ -418,95 +719,322 @@ function renderContent() {
 
   if (tab === 'jobs') {
     c.innerHTML = `<div class="offers-grid">${jobOffers().map(j => offerCard(j, 'job', busy, lv)).join('')}</div>`;
-
   } else if (tab === 'missions') {
-    const offers = missionOffers();
-    c.innerHTML = offers.length
-      ? `<div class="offers-grid">${offers.map(m => offerCard(m, 'mission', busy, lv)).join('')}</div>`
-      : `<div class="empty-note">Nenhuma missão disponível.</div>`;
-
+    renderMissions(c, busy, lv);
+  } else if (tab === 'map') {
+    renderMap(c, busy, lv);
   } else if (tab === 'hangar') {
-    c.innerHTML = `<div class="hangar-grid">` + SHIPS.slice(1).map(ship => {
-      const owned = S.ship >= ship.tier;
-      const current = S.ship === ship.tier;
-      const lockedPrev = !owned && S.ship < ship.tier - 1;
-      const lockedLvl = !owned && lv < ship.lvl;
-      const canBuy = !owned && !lockedPrev && !lockedLvl && S.credits >= ship.price;
-      return `
-        <div class="card ship-card ${owned ? 'owned' : ''} ${current ? 'current' : ''}">
-          <div class="info">
-            <h4><span class="ship-icon">${ship.icon}</span>${ship.name} ${current ? '· <span class="owned-tag">sua nave</span>' : owned ? '· <span class="owned-tag">adquirida</span>' : ''}</h4>
-            <p>${ship.desc}</p>
-            ${lockedPrev ? `<p style="color:var(--red);margin-top:4px">Requer a nave anterior primeiro.</p>` : ''}
-            ${!owned && ship.lvl > 1 ? `<p style="color:${lockedLvl ? 'var(--red)' : 'var(--dim)'};margin-top:4px">Requer nível ${ship.lvl}</p>` : ''}
-          </div>
-          ${owned ? '' : `<button class="buy" ${canBuy ? '' : 'disabled'} onclick="buyShip(${ship.tier})">${fmtCredits(ship.price)} ₵</button>`}
-        </div>`;
-    }).join('') + `</div>`;
-
-  } else {
+    renderHangar(c, lv);
+  } else if (tab === 'inventory') {
     renderInventory(c);
+  } else {
+    renderProfile(c, lv);
   }
 }
 
-function offerCard(o, kind, busy, lv) {
-  const lvLocked = o.lvl && lv < o.lvl;
+function renderMissions(c, busy, lv) {
+  let html = '';
+
+  // combustível rápido
+  html += fuelStationHtml();
+
+  // contrato diário
+  const daily = dailyContract();
+  if (daily) {
+    if (S.dailyDone === daily.day) {
+      const msLeft = (daily.day + 1) * DAY - Date.now();
+      html += `<div class="daily-done">⭐ <b>Contrato diário concluído.</b> Um novo aparece em ${fmtCountdown(msLeft)}.</div>`;
+    } else {
+      html += offerCard(daily, 'daily', busy, lv, true);
+    }
+  }
+
+  const offers = missionOffers();
+  html += offers.length
+    ? `<div class="offers-grid">${offers.map(m => offerCard(m, 'mission', busy, lv)).join('')}</div>`
+    : `<div class="empty-note">Nenhuma missão disponível.</div>`;
+
+  c.innerHTML = html;
+}
+
+function fuelStationHtml() {
+  if (S.ship === 0) return '';
+  const mx = maxFuel();
+  const fillCost = (mx - S.fuel) * FUEL_PRICE;
   return `
-    <div class="card">
+    <div class="fuel-station">
+      <span class="fs-info">⛽ Combustível: <b>${S.fuel}/${mx}</b> · ${FUEL_PRICE} ₵ por unidade</span>
+      <span class="fs-actions">
+        <button class="fuel-btn" ${S.fuel >= mx ? 'disabled' : ''} onclick="buyFuel(10)">+10 (${10 * FUEL_PRICE} ₵)</button>
+        <button class="fuel-btn" ${S.fuel >= mx ? 'disabled' : ''} onclick="buyFuel(${mx - S.fuel})">Encher (${fmtCredits(fillCost)} ₵)</button>
+      </span>
+    </div>`;
+}
+
+function renderMap(c, busy, lv) {
+  const offers = missionOffers();
+  const offerById = {};
+  for (const o of offers) offerById[o.id] = o;
+
+  const locs = MISSIONS.map(m => {
+    let status;
+    if (offerById[m.id] && lv >= m.lvl) status = 'open';
+    else if (m.tier <= S.ship) status = 'idle';
+    else status = 'locked';
+    const sel = mapSel === m.id ? ' selected' : '';
+    return `
+      <div class="map-loc ${status}${sel}" style="left:${m.loc.x}%;top:${m.loc.y}%" onclick="selectLoc('${m.id}')">
+        <span class="loc-icon">${m.loc.icon}</span>
+        <span class="loc-name">${m.loc.name}</span>
+      </div>`;
+  }).join('');
+
+  let detail = '';
+  if (mapSel) {
+    const m = MISSIONS.find(x => x.id === mapSel);
+    const offer = offerById[m.id];
+    if (offer && lv >= m.lvl) {
+      detail = `<div class="map-detail">${offerCard(offer, 'mission', busy, lv)}</div>`;
+    } else if (m.tier > S.ship) {
+      const needShip = SHIPS.find(s => s.tier === m.tier);
+      detail = `<div class="map-detail"><div class="daily-done">🔒 <b>${m.loc.name}</b> — fora do alcance da sua nave. Requer <b>${needShip.icon} ${needShip.name}</b>.</div></div>`;
+    } else if (lv < m.lvl) {
+      detail = `<div class="map-detail"><div class="daily-done">🔒 <b>${m.loc.name}</b> — ${m.name} requer <b>nível ${m.lvl}</b>.</div></div>`;
+    } else {
+      const msLeft = (hourIndex() + 1) * HOUR - Date.now();
+      detail = `<div class="map-detail"><div class="daily-done">📭 <b>${m.loc.name}</b> — sem contratos nesta rotação. Novas ofertas em <b>${fmtCountdown(msLeft)}</b>.</div></div>`;
+    }
+  }
+
+  c.innerHTML = `
+    <div class="map-box">
+      <div class="map-station"><span class="st-icon">🛰️</span><span class="st-name">PONTO ZERO</span></div>
+      ${locs}
+    </div>
+    ${detail}
+    <div class="map-hint">${S.ship === 0
+      ? '🔒 Compre uma nave no Hangar para voar até esses destinos.'
+      : 'Pontos com anel verde têm contratos disponíveis nesta rotação. Clique para ver.'}</div>`;
+}
+
+function renderHangar(c, lv) {
+  let html = '';
+
+  // naves
+  const discount = repLevel('corp') > 0;
+  html += `<div class="hangar-grid">` + SHIPS.slice(1).map(ship => {
+    const owned = S.ship >= ship.tier;
+    const current = S.ship === ship.tier;
+    const lockedPrev = !owned && S.ship < ship.tier - 1;
+    const lockedLvl = !owned && lv < ship.lvl;
+    const price = shipPrice(ship);
+    const canBuy = !owned && !lockedPrev && !lockedLvl && S.credits >= price;
+    return `
+      <div class="card ship-card ${owned ? 'owned' : ''} ${current ? 'current' : ''}">
+        <div class="info">
+          <h4><span class="ship-icon">${ship.icon}</span>${ship.name} ${current ? '· <span class="owned-tag">sua nave</span>' : owned ? '· <span class="owned-tag">adquirida</span>' : ''}</h4>
+          <p>${ship.desc}</p>
+          <p style="color:var(--dim);margin-top:4px">⛽ Tanque: ${ship.tank} · 🔧 Slots de módulo: ${ship.slots}</p>
+          ${lockedPrev ? `<p style="color:var(--red);margin-top:4px">Requer a nave anterior primeiro.</p>` : ''}
+          ${!owned && ship.lvl > 1 ? `<p style="color:${lockedLvl ? 'var(--red)' : 'var(--dim)'};margin-top:4px">Requer nível ${ship.lvl}</p>` : ''}
+        </div>
+        ${owned ? '' : `<button class="buy" ${canBuy ? '' : 'disabled'} onclick="buyShip(${ship.tier})">${fmtCredits(price)} ₵${discount && price < ship.price ? ' 🏢' : ''}</button>`}
+      </div>`;
+  }).join('') + `</div>`;
+
+  // posto de combustível
+  if (S.ship > 0) {
+    html += `<div class="section-title">⛽ Posto de abastecimento</div>`;
+    html += fuelStationHtml();
+  }
+
+  // módulos
+  if (S.ship > 0) {
+    const slots = SHIPS[S.ship].slots;
+    html += `<div class="section-title">🔧 Oficina de módulos</div>`;
+    html += `<div class="slots-note">Slots usados: <b>${S.modules.length}/${slots}</b> — módulos exigem créditos e peças fabricadas (aba Itens).</div>`;
+    html += `<div class="module-grid">` + MODULES.map(mod => {
+      const owned = moduleOwned(mod.id);
+      const price = modulePrice(mod);
+      const partsOk = Object.entries(mod.needs).every(([id, n]) => (S.inventory[id] || 0) >= n);
+      const canBuy = !owned && S.modules.length < slots && S.credits >= price && partsOk;
+      const needsHtml = Object.entries(mod.needs).map(([id, n]) => {
+        const have = S.inventory[id] || 0;
+        return `<span class="need ${have >= n ? 'ok' : 'missing'}">${ITEMS[id].icon} ${ITEMS[id].name} ${have}/${n}</span>`;
+      }).join('');
+      return `
+        <div class="module-card ${owned ? 'installed' : ''}">
+          <div class="module-top">
+            <span class="m-icon">${mod.icon}</span>
+            <div>
+              <h5>${mod.name} ${owned ? '· <span class="owned-tag">instalado</span>' : ''}</h5>
+              <div class="module-effect">${mod.effect}</div>
+            </div>
+          </div>
+          ${owned ? '' : `<div class="recipe-needs">${needsHtml}</div>
+          <div class="actions" style="display:flex;justify-content:flex-end">
+            <button class="buy" ${canBuy ? '' : 'disabled'} onclick="buyModule('${mod.id}')">${fmtCredits(price)} ₵</button>
+          </div>`}
+        </div>`;
+    }).join('') + `</div>`;
+  }
+
+  c.innerHTML = html;
+}
+
+function offerCard(o, kind, busy, lv, isDaily) {
+  const lvLocked = o.lvl && lv < o.lvl;
+  const isFlight = kind !== 'job';
+  const noFuel = isFlight && S.fuel < o.fuel;
+  const disabled = busy || lvLocked || noFuel;
+  const btnLabel = lvLocked ? `Nível ${o.lvl}` : noFuel ? 'Sem ⛽' : 'Aceitar';
+  return `
+    <div class="card ${isDaily ? 'daily-card' : ''}">
       <div class="info">
+        ${isDaily ? '<div class="daily-tag">⭐ Contrato diário — recompensa especial</div>' : ''}
         <h4>${o.name}</h4>
         <p>${o.desc}</p>
       </div>
       <div class="meta">
         <span class="dur">⏱ ${fmtDur(o.min)}</span>
-        <span class="pay">+${o.pay} ₵</span>
-        <span class="xp">+${o.xp} XP</span>
+        <span class="pay">+${fmtCredits(o.pay)} ₵</span>
+        <span class="xp">+${fmtCredits(o.xp)} XP</span>
+        ${isFlight ? `<span class="fuel-cost">⛽ ${o.fuel}</span>` : ''}
         ${o.lvl && o.lvl > 1 ? `<span class="${lvLocked ? 'req' : ''}">Nv. ${o.lvl}+</span>` : ''}
       </div>
+      ${o.faction ? `<div class="meta">${factionChip(o.faction)}</div>` : ''}
       <div class="actions">
-        <button ${busy || lvLocked ? 'disabled' : ''} onclick='startActivity("${kind}", ${JSON.stringify(o).replace(/'/g, "&#39;")})'>${lvLocked ? `Nível ${o.lvl}` : 'Aceitar'}</button>
+        <button ${disabled ? 'disabled' : ''} onclick='startActivity("${kind}", ${JSON.stringify(o).replace(/'/g, "&#39;")})'>${btnLabel}</button>
       </div>
     </div>`;
 }
 
 function renderInventory(c) {
+  let html = '';
   const entries = Object.entries(S.inventory);
+
   if (!entries.length) {
-    c.innerHTML = `<div class="empty-note">🎒 Inventário vazio.<br>Serviços e missões podem render itens para vender.</div>`;
-    return;
+    html += `<div class="empty-note">🎒 Inventário vazio.<br>Serviços e missões podem render itens para vender ou fabricar.</div>`;
+  } else {
+    entries.sort((a, b) => sellPrice(b[0]) - sellPrice(a[0]));
+    const bonusTxt = [];
+    if (moduleOwned('refinaria')) bonusTxt.push('⚗️ Refinaria +20%');
+    if (repLevel('mineradores') > 0) bonusTxt.push(`⛏️ Mineradores +${repLevel('mineradores') * 2}%`);
+    html += `
+      <div class="inv-header">
+        <span>${invCount()} itens · valor de mercado <b style="color:var(--gold)">${fmtCredits(invTotalValue())} ₵</b></span>
+        <button class="sell" onclick="sellAll()">Vender tudo</button>
+      </div>
+      <div class="market-note">📈 Os preços flutuam a cada hora. Setas mostram o mercado atual vs. valor base.${bonusTxt.length ? ' Bônus: ' + bonusTxt.join(' · ') : ''}</div>`;
+
+    const cards = entries.map(([id, qty]) => {
+      const it = ITEMS[id];
+      const price = sellPrice(id);
+      const mult = marketMult(id);
+      const trend = mult > 1.05 ? `<span class="trend-up">▲</span>` : mult < 0.95 ? `<span class="trend-down">▼</span>` : `<span class="trend-flat">▬</span>`;
+      return `
+        <div class="item-card ${rarityClass(it.rarity)}">
+          <div class="item-top">
+            <span class="item-icon">${it.icon}</span>
+            <div>
+              <div class="item-name">${it.name}</div>
+              <div class="item-rarity">${it.rarity}</div>
+            </div>
+          </div>
+          <div class="item-bottom">
+            <span class="item-qty">qtd. <b>${qty}</b></span>
+            <span class="item-value">${trend} ${price} ₵ /un</span>
+          </div>
+          <div class="item-actions">
+            <button class="sell" onclick="sellItem('${id}', 1)">Vender 1</button>
+            <button class="sell" onclick="sellItem('${id}', ${qty})">Vender ${qty}</button>
+          </div>
+        </div>`;
+    }).join('');
+    html += `<div class="inv-grid">${cards}</div>`;
   }
-  // ordena por valor (mais valioso primeiro)
-  entries.sort((a, b) => ITEMS[b[0]].value - ITEMS[a[0]].value);
 
-  const header = `
-    <div class="inv-header">
-      <span>${invCount()} itens · valor total <b style="color:var(--gold)">${fmtCredits(invTotalValue())} ₵</b></span>
-      <button class="sell" onclick="sellAll()">Vender tudo</button>
-    </div>`;
-
-  const cards = entries.map(([id, qty]) => {
-    const it = ITEMS[id];
+  // fabricação
+  html += `<div class="section-title">🔨 Fabricação</div>`;
+  html += `<div class="recipe-grid">` + RECIPES.map(r => {
+    const canCraft = Object.entries(r.needs).every(([id, n]) => (S.inventory[id] || 0) >= n)
+      && !(r.out.fuel && maxFuel() === 0);
+    const needsHtml = Object.entries(r.needs).map(([id, n]) => {
+      const have = S.inventory[id] || 0;
+      return `<span class="need ${have >= n ? 'ok' : 'missing'}">${ITEMS[id].icon} ${ITEMS[id].name} ${have}/${n}</span>`;
+    }).join('');
     return `
-      <div class="item-card ${rarityClass(it.rarity)}">
-        <div class="item-top">
-          <span class="item-icon">${it.icon}</span>
+      <div class="recipe-card">
+        <div class="recipe-top">
+          <span class="r-icon">${r.icon}</span>
           <div>
-            <div class="item-name">${it.name}</div>
-            <div class="item-rarity">${it.rarity}</div>
+            <h5>${r.name}</h5>
+            <div class="r-out">Produz: ${r.outDesc}</div>
           </div>
         </div>
-        <div class="item-bottom">
-          <span class="item-qty">qtd. <b>${qty}</b></span>
-          <span class="item-value">${it.value} ₵ /un</span>
+        <div class="recipe-needs">${needsHtml}</div>
+        <div class="actions">
+          <button ${canCraft ? '' : 'disabled'} onclick="craft('${r.id}')">Fabricar</button>
         </div>
-        <div class="item-actions">
-          <button class="sell" onclick="sellItem('${id}', 1)">Vender 1</button>
-          <button class="sell" onclick="sellItem('${id}', ${qty})">Vender ${qty}</button>
+      </div>`;
+  }).join('') + `</div>`;
+
+  c.innerHTML = html;
+}
+
+function renderProfile(c, lv) {
+  let html = '';
+
+  // estatísticas
+  html += `<div class="profile-stats">
+    <div class="pstat"><b>${lv}</b><span>nível</span></div>
+    <div class="pstat"><b>${fmtCredits(S.xp)}</b><span>XP total</span></div>
+    <div class="pstat"><b>${S.dailiesDone}</b><span>contratos diários</span></div>
+    <div class="pstat"><b>${S.crafts}</b><span>fabricações</span></div>
+    <div class="pstat"><b>${S.modules.length}</b><span>módulos</span></div>
+    <div class="pstat"><b>${S.achievements.length}/${ACHIEVEMENTS.length}</b><span>conquistas</span></div>
+  </div>`;
+
+  // reputação
+  html += `<div class="section-title">🤝 Reputação</div>`;
+  html += Object.entries(FACTIONS).map(([id, f]) => {
+    const rep = S.rep[id] || 0;
+    const lvl = repLevel(id);
+    const nextThreshold = lvl < REP_LEVELS.length - 1 ? REP_LEVELS[lvl + 1].at : null;
+    const prevThreshold = REP_LEVELS[lvl].at;
+    const pct = nextThreshold
+      ? ((rep - prevThreshold) / (nextThreshold - prevThreshold)) * 100
+      : 100;
+    return `
+      <div class="rep-card">
+        <div class="rep-head">
+          <h4>${f.icon} ${f.name}</h4>
+          <span class="rep-level" style="color:${f.color}">${REP_LEVELS[lvl].name}</span>
+        </div>
+        <div class="rep-outer"><div class="rep-inner" style="width:${pct.toFixed(1)}%;background:${f.color}"></div></div>
+        <div style="display:flex;justify-content:space-between">
+          <span class="rep-benefit">${f.benefit} · missões da facção pagam +5%/nível</span>
+          <span class="rep-pts">${rep}${nextThreshold ? ' / ' + nextThreshold : ' (máx)'}</span>
         </div>
       </div>`;
   }).join('');
 
-  c.innerHTML = header + `<div class="inv-grid">${cards}</div>`;
+  // conquistas
+  html += `<div class="section-title">🏆 Conquistas (${S.achievements.length}/${ACHIEVEMENTS.length})</div>`;
+  html += `<div class="ach-grid">` + ACHIEVEMENTS.map(a => {
+    const done = S.achievements.includes(a.id);
+    return `
+      <div class="ach-card ${done ? 'done' : ''}">
+        <span class="ach-check">${done ? '✅' : '🔒'}</span>
+        <div class="ach-info">
+          <h5>${a.name}</h5>
+          <p>${a.desc}</p>
+        </div>
+        <span class="ach-reward">+${a.reward} ₵</span>
+      </div>`;
+  }).join('') + `</div>`;
+
+  c.innerHTML = html;
 }
 
 function renderLog() {
@@ -539,6 +1067,8 @@ function showLevelUp(lv) {
 
 load();
 if (S.totalEarned > 0) S.seenIntro = true;
+checkAchievements();
+save();
 
 let lastHour = hourIndex();
 render();
@@ -547,7 +1077,7 @@ setInterval(() => {
   const h = hourIndex();
   if (h !== lastHour) {
     lastHour = h;
-    if (!S.activity) toast('↻ Novas ofertas disponíveis!');
+    if (!S.activity) toast('↻ Novas ofertas e preços de mercado!');
   }
   render();
 }, 1000);
